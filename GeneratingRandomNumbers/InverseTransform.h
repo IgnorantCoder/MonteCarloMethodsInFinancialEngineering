@@ -5,13 +5,13 @@
 #include "GeneratingRandomNumbers/IGeneralSampling.h"
 
 namespace mc {
-    class IRandomGenerator;
+    class IUniformRandomNumberGenerator;
     class IInverseOfCdf;
 
     class InverseTransform : public IGeneralSampling {
     public:
         InverseTransform(
-            IRandomGenerator& generator,
+            IUniformRandomNumberGenerator& generator,
             const IInverseOfCdf& invOfCdf);
 
     private:

@@ -5,11 +5,15 @@
 #include "GeneratingRandomNumbers/IGeneralSampling.h"
 
 namespace mc {
+    class IUniformRandomNumberGenerator;
+    class IGeneralSampling;
+    class ICumulativeDistributionFunction;
+
     class AcceptanceRejection : public IGeneralSampling {
     public:
         AcceptanceRejection(
             double c,
-            const IRandomGenerator& uniformGenerator,
+            const IUniformRandomNumberGenerator& uniformGenerator,
             const IGeneralSampling& samplingGenerator,
             const ICumulativeDistributionFunction& f);
 

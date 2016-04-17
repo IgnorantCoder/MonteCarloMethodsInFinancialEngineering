@@ -4,12 +4,12 @@
 
 #include "GeneratingRandomNumbers/InverseTransform.h"
 #include "GeneratingRandomNumbers/IInverseOfCdf.h"
-#include "GeneratingRandomNumbers/IRandomGenerator.h"
+#include "GeneratingRandomNumbers/IUniformRandomNumberGenerator.h"
 
 namespace mc {
     struct InverseTransform::Impl {
         Impl(
-            IRandomGenerator& generator,
+            IUniformRandomNumberGenerator& generator,
             const IInverseOfCdf& invOfCdf)
             : _generator(generator.cloneUnique()),
             _invOfCdf(invOfCdf.cloneUnique())
@@ -21,7 +21,7 @@ namespace mc {
             return (*this->_invOfCdf)(u);
         }
 
-        std::unique_ptr<IRandomGenerator> _generator;
+        std::unique_ptr<IUniformRandomNumberGenerator> _generator;
         std::unique_ptr<const IInverseOfCdf> _invOfCdf;
     };
 }

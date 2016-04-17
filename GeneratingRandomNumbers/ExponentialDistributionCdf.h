@@ -14,8 +14,10 @@ namespace mc {
     private:
         // Inherited via ICumulativeDistributionFunction
         virtual double callImpl(double x) const override;
-        virtual std::unique_ptr<const ICumulativeDistributionFunction> cloneUniqueImpl() const override;
-        virtual std::shared_ptr<const ICumulativeDistributionFunction> cloneSharedImpl() const override;
+        virtual std::unique_ptr<const ICumulativeDistributionFunction>
+        cloneUniqueImpl() const override;
+        virtual std::shared_ptr<const ICumulativeDistributionFunction>
+        cloneSharedImpl() const override;
 
     private:
         double _mean;

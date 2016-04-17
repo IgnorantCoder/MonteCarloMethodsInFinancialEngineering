@@ -7,11 +7,10 @@ namespace mc {
     struct modified_linear_congruential_generator<a, m>::Impl {
         Impl(int seed);
         void iterate();
-        int calck() const;
         double normalize() const;
 
-        static constexpr int q = m / a;
-        static constexpr int r = m % a;
+        static constexpr int _q = m / a;
+        static constexpr int _r = m % a;
         int _x;
     };
 
@@ -25,25 +24,13 @@ namespace mc {
     inline void
     modified_linear_congruential_generator<a, m>::Impl::iterate()
     {
-        this->_x = a * (this->_x - this->calck() * q) - this->calck() * r;
-
-        if (this->_x < 0) {
-            this->_x = this->_x + m;
-            return;
-        }
-        else {
-            this->iterate();
-        }
+        const int k = this->_x / _q;
+        this->_x = a * (this->_x - k * _q) - k * _r;
+        this->_x += this->_x < 0 ? m : 0;
 
         return;
     }
     
-    template <int a, int m>
-    inline int modified_linear_congruential_generator<a, m>::Impl::calck() const
-    {
-        return this->_x / q;
-    }
-
     template <int a, int m>
     inline double
     modified_linear_congruential_generator<a, m>::Impl::normalize() const

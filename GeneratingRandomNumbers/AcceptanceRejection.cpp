@@ -4,7 +4,7 @@
 namespace mc {
     AcceptanceRejection::AcceptanceRejection(
         double c, 
-        const IRandomGenerator & uniformGenerator,
+        const IUniformRandomNumberGenerator & uniformGenerator,
         const IGeneralSampling & samplingGenerator,
         const ICumulativeDistributionFunction & f)
         : _impl(std::make_unique<Impl>(c, uniformGenerator, samplingGenerator, f))

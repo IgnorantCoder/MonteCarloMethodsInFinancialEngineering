@@ -3,7 +3,7 @@
 
 namespace mc {
     InverseTransform::InverseTransform(
-        IRandomGenerator & generator,
+        IUniformRandomNumberGenerator & generator,
         const IInverseOfCdf & invOfCdf)
         : _impl(std::make_unique<Impl>(generator, invOfCdf))
     {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "GeneratingRandomNumbers/IRandomGenerator.h"
+#include <memory>
 
 namespace mc {
     class ICumulativeDistributionFunction;

@@ -8,6 +8,7 @@ namespace mc {
         Impl(int seed);
         void iterate( );
         double normalize() const;
+
         int _x;
     };
 
