@@ -22,7 +22,13 @@ namespace mc {
     inline void
     simple_linear_congruential_generator<a, m>::Impl::iterate()
     {
-        this->_x = (a * this->_x) % m;
+        int x = 0;
+        for (decltype(a) i = 0; i < a; ++i) {
+            x += this->_x;
+            x = x % m;
+        }
+        this->_x = x;
+        //this->_x = (a * this->_x) % m;
         return;
     }
 

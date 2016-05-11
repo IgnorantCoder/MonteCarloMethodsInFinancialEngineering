@@ -2,8 +2,10 @@
 
 #include <memory>
 
+#include "GeneratingRandomNumbers/Macro.h"
+
 namespace mc {
-    class ICumulativeDistributionFunction {
+    class RNDGEN_API ICumulativeDistributionFunction {
     public:
         virtual ~ICumulativeDistributionFunction();
 

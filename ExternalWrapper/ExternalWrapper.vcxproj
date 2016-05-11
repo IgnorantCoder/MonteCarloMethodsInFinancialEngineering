@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E145FFC9-C810-4904-A7B2-247C74B51C27}</ProjectGuid>
-    <RootNamespace>GeneratingRandomNumbers</RootNamespace>
+    <ProjectGuid>{705B0464-A94D-4543-9719-F892A0E8B786}</ProjectGuid>
+    <RootNamespace>ExternalWrapper</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -69,29 +69,32 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>D:\externallib\boost_1_55_0;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <IncludePath>D:\externallib\boost_1_55_0;$(IncludePath)</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>D:\externallib\boost_1_55_0;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>D:\externallib\boost_1_55_0;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GENERATINGRANDOMNUMBERS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EXTERNAL_WRAPPER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
-      <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
-      <AdditionalDependencies>ExternalWrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -99,17 +102,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GENERATINGRANDOMNUMBERS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EXTERNAL_WRAPPER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Console</SubSystem>
-      <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
-      <AdditionalDependencies>ExternalWrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -119,21 +117,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GENERATINGRANDOMNUMBERS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EXTERNAL_WRAPPER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <SubSystem>Console</SubSystem>
-      <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
-      <AdditionalDependencies>ExternalWrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -143,71 +134,28 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GENERATINGRANDOMNUMBERS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>EXTERNAL_WRAPPER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
-      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <SubSystem>Console</SubSystem>
-      <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
-      <AdditionalDependencies>ExternalWrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AcceptanceRejection-impl.h" />
-    <ClInclude Include="AcceptanceRejection.h" />
-    <ClInclude Include="AcceptanceRejectionNormalRandomGenerator-impl.h" />
-    <ClInclude Include="AcceptanceRejectionNormalRandomGenerator.h" />
-    <ClInclude Include="ExponentialDistributionCdf.h" />
-    <ClInclude Include="ICumulativeDistributionFunction.h" />
-    <ClInclude Include="IExponentialRandomGenerator.h" />
-    <ClInclude Include="IGeneralSampling.h" />
-    <ClInclude Include="IInverseOfCdf.h" />
-    <ClInclude Include="impl\RandomGeneratorHolder.h" />
-    <ClInclude Include="IMultiDimensionalUniformGenerator.h" />
-    <ClInclude Include="INormalRandomGenerator.h" />
-    <ClInclude Include="InverseOfExponentialDistributionCdf-impl.h" />
-    <ClInclude Include="InverseOfExponentialDistributionCdf.h" />
-    <ClInclude Include="InverseTransform-impl.h" />
-    <ClInclude Include="InverseTransform.h" />
-    <ClInclude Include="InverseTransformExponentialRandomGenerator-impl.h" />
-    <ClInclude Include="InverseTransformExponentialRandomGenerator.h" />
-    <ClInclude Include="IUniformRandomNumberGenerator.h" />
+    <ClInclude Include="boost\BoostNapier.h" />
+    <ClInclude Include="boost\BoostPi.h" />
     <ClInclude Include="Macro.h" />
-    <ClInclude Include="modified_linear_congruential_generator-impl.h" />
-    <ClInclude Include="modified_linear_congruential_generator.h" />
-    <ClInclude Include="MultiDimensionalUniformGenerator.h" />
-    <ClInclude Include="RandomGenerator.h" />
-    <ClInclude Include="simple_linear_congruential_generator.h" />
-    <ClInclude Include="ILinearCongruentialGenerator.h" />
-    <ClInclude Include="simple_linear_congruential_generator-impl.h" />
-    <ClInclude Include="NormalDistributionCdf.h" />
+    <ClInclude Include="Napier.h" />
+    <ClInclude Include="Pi.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AcceptanceRejection.cpp" />
-    <ClCompile Include="AcceptanceRejectionNormalRandomGenerator.cpp" />
-    <ClCompile Include="ExponentialDistributionCdf.cpp" />
-    <ClCompile Include="ICumulativeDistributionFunction.cpp" />
-    <ClCompile Include="IExponentialRandomGenerator.cpp" />
-    <ClCompile Include="IGeneralSampling.cpp" />
-    <ClCompile Include="IInverseOfCdf.cpp" />
-    <ClCompile Include="ILinearCongruentialGenerator.cpp" />
-    <ClCompile Include="INormalRandomGenerator.cpp" />
-    <ClCompile Include="InverseTransformExponentialRandomGenerator.cpp" />
-    <ClCompile Include="NormalDistributionCdf.cpp" />
-    <ClCompile Include="RandomGenerator.cpp" />
-    <ClCompile Include="InverseOfExponentialDistributionCdf.cpp" />
-    <ClCompile Include="InverseTransform.cpp" />
-    <ClCompile Include="IUniformRandomNumberGenerator.cpp" />
-    <ClCompile Include="modified_linear_congruential_generator.cpp" />
-    <ClCompile Include="simple_linear_congruential_generator.cpp" />
+    <ClCompile Include="boost\BoostNapier.cpp" />
+    <ClCompile Include="boost\BoostPi.cpp" />
+    <ClCompile Include="Napier.cpp" />
+    <ClCompile Include="Pi.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -54,6 +54,22 @@ namespace mc {
     template class modified_linear_congruential_generator<16807, 2147483647>;
     template class modified_linear_congruential_generator<39373, 2147483647>;
 
+    std::unique_ptr<IUniformRandomNumberGenerator>
+    makeUniqueDefaultModifiedLinearCongruentialGenerator(int seed)
+    {
+        using generator_type
+            = modified_linear_congruential_generator<39373, 2147483647>;
+        return std::make_unique<generator_type>(seed);
+    }
+
+    std::shared_ptr<IUniformRandomNumberGenerator>
+    makeSharedDefaultModifiedLinearCongruentialGenerator(int seed)
+    {
+        using generator_type
+            = modified_linear_congruential_generator<39373, 2147483647>;
+        return std::make_shared<generator_type>(seed);
+    }
+
     RandomGenerator
     makeModifiedLinearCongruentialGenerator(int seed)
     {

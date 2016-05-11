@@ -2,9 +2,19 @@
 #include "GeneratingRandomNumbers/InverseOfExponentialDistributionCdf-impl.h"
 
 namespace mc {
+    InverseOfExponentialDistributionCdf::InverseOfExponentialDistributionCdf(
+        const InverseOfExponentialDistributionCdf & rhs)
+        : _impl(std::make_unique<Impl>(rhs._impl->_mean))
+    {
+    }
+
     InverseOfExponentialDistributionCdf
         ::InverseOfExponentialDistributionCdf(double mean)
         : _impl(std::make_unique<Impl>(mean))
+    {
+    }
+
+    InverseOfExponentialDistributionCdf::~InverseOfExponentialDistributionCdf()
     {
     }
 
@@ -28,8 +38,21 @@ namespace mc {
             const InverseOfExponentialDistributionCdf
         >(this->_impl->_mean);
     }
-    const ICumulativeDistributionFunction & InverseOfExponentialDistributionCdf::originalImpl() const
+    const ICumulativeDistributionFunction & 
+    InverseOfExponentialDistributionCdf::originalImpl() const
     {
         return *this->_impl->_original;
+    }
+
+    std::shared_ptr<const IInverseOfCdf>
+    makeSharedInverseOfExponentialDistributionCdf(double mean)
+    {
+        return std::make_shared<const InverseOfExponentialDistributionCdf>(mean);
+    }
+
+    std::unique_ptr<const IInverseOfCdf>
+    makeUniqueInverseOfExponentialDistributionCdf(double mean)
+    {
+        return std::make_unique<const InverseOfExponentialDistributionCdf>(mean);
     }
 }

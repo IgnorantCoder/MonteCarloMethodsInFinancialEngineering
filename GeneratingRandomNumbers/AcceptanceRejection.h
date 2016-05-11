@@ -2,15 +2,18 @@
 
 #include <memory>
 
+#include "GeneratingRandomNumbers/Macro.h"
 #include "GeneratingRandomNumbers/IGeneralSampling.h"
 
 namespace mc {
     class IUniformRandomNumberGenerator;
     class IGeneralSampling;
     class ICumulativeDistributionFunction;
+    class RandomGenerator;
 
     class AcceptanceRejection : public IGeneralSampling {
     public:
+        AcceptanceRejection(const AcceptanceRejection& rhs);
         AcceptanceRejection(
             double c,
             const IUniformRandomNumberGenerator& uniformGenerator,
@@ -28,4 +31,11 @@ namespace mc {
         struct Impl;
         std::unique_ptr<Impl> _impl;
     };
+
+    RNDGEN_API RandomGenerator
+    makeAcceptanceRejection(
+        double c,
+        const IUniformRandomNumberGenerator& uniformGenerator,
+        const IGeneralSampling& samplingGenerator,
+        const ICumulativeDistributionFunction& f);
 }

@@ -51,11 +51,12 @@ namespace mc {
     }
 
     template class simple_linear_congruential_generator<6, 11>;
+    template class simple_linear_congruential_generator<1140671485, 16777216>;
 
     RandomGenerator 
     makeSimpleLinearCongruentialGenerator(int seed)
     {
-        simple_linear_congruential_generator<6, 11> inner(seed);
+        simple_linear_congruential_generator<1140671485, 16777216> inner(seed);
         RandomGenerator ret(inner);
         return ret;
     }

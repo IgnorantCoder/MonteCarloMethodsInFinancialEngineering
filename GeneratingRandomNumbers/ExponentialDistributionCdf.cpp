@@ -1,4 +1,4 @@
-#include "ExponentialDistributionCdf.h"
+#include "GeneratingRandomNumbers/ExponentialDistributionCdf.h"
 
 namespace mc {
     double ExponentialDistributionCdf::callImpl(double x) const
@@ -12,7 +12,8 @@ namespace mc {
         return std::make_unique<const ExponentialDistributionCdf>(this->_mean);
     }
 
-    std::shared_ptr<const ICumulativeDistributionFunction> mc::ExponentialDistributionCdf::cloneSharedImpl() const
+    std::shared_ptr<const ICumulativeDistributionFunction>
+    ExponentialDistributionCdf::cloneSharedImpl() const
     {
         return std::make_shared<const ExponentialDistributionCdf>(this->_mean);
     }

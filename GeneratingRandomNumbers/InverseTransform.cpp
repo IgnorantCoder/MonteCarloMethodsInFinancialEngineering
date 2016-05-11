@@ -1,11 +1,24 @@
 #include "GeneratingRandomNumbers/InverseTransform.h"
 #include "GeneratingRandomNumbers/InverseTransform-impl.h"
 
+#include "GeneratingRandomNumbers/RandomGenerator.h"
+
 namespace mc {
+    InverseTransform::InverseTransform(const InverseTransform & rhs)
+        : _impl(std::make_unique<Impl>(
+            *rhs._impl->_generator,
+            *rhs._impl->_invOfCdf))
+    {
+    }
+
     InverseTransform::InverseTransform(
         IUniformRandomNumberGenerator & generator,
         const IInverseOfCdf & invOfCdf)
         : _impl(std::make_unique<Impl>(generator, invOfCdf))
+    {
+    }
+
+    InverseTransform::~InverseTransform()
     {
     }
 
@@ -31,5 +44,29 @@ namespace mc {
     const ICumulativeDistributionFunction & InverseTransform::distImpl() const
     {
         return this->_impl->_invOfCdf->original();
+    }
+
+    RandomGenerator
+    makeInverseTransform(
+        IUniformRandomNumberGenerator & generator, 
+        const IInverseOfCdf & invOfCdf)
+    {
+        InverseTransform inner(generator, invOfCdf);
+        RandomGenerator ret(inner);
+        return ret;
+    }
+
+    std::shared_ptr<const IGeneralSampling> makeSharedInverseTransform(
+        IUniformRandomNumberGenerator & generator,
+        const IInverseOfCdf & invOfCdf)
+    {
+        return std::make_shared<const InverseTransform>(generator, invOfCdf);
+    }
+
+    std::unique_ptr<const IGeneralSampling> makeUniqueInverseTransform(
+        IUniformRandomNumberGenerator & generator,
+        const IInverseOfCdf & invOfCdf)
+    {
+        return std::make_unique<const InverseTransform>(generator, invOfCdf);
     }
 }

@@ -30,6 +30,12 @@ namespace mc {
         std::unique_ptr<Impl> _impl;
     };
 
+    RNDGEN_API std::unique_ptr<IUniformRandomNumberGenerator>
+    makeUniqueDefaultModifiedLinearCongruentialGenerator(int seed);
+
+    RNDGEN_API std::shared_ptr<IUniformRandomNumberGenerator>
+    makeSharedDefaultModifiedLinearCongruentialGenerator(int seed);
+
     RNDGEN_API RandomGenerator
     makeModifiedLinearCongruentialGenerator(int seed);
 }

@@ -2,10 +2,12 @@
 
 #include <memory>
 
+#include "GeneratingRandomNumbers/Macro.h"
+
 namespace mc {
     class ICumulativeDistributionFunction;
 
-    class IGeneralSampling {
+    class RNDGEN_API IGeneralSampling {
     public:
         double operator()() const;
         const ICumulativeDistributionFunction& dist() const;

@@ -2,8 +2,10 @@
 
 #include <memory>
 
+#include "GeneratingRandomNumbers/Macro.h"
+
 namespace mc {
-    class IUniformRandomNumberGenerator {
+    class RNDGEN_API IUniformRandomNumberGenerator {
     public:
         virtual ~IUniformRandomNumberGenerator();
 

@@ -2,10 +2,12 @@
 
 #include <memory>
 
+#include "GeneratingRandomNumbers/Macro.h"
+
 namespace mc {
     class ICumulativeDistributionFunction;
 
-    class IInverseOfCdf {
+    class RNDGEN_API IInverseOfCdf {
     public:
         virtual ~IInverseOfCdf();
 

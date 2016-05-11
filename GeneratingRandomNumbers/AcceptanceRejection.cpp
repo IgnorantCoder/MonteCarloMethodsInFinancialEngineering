@@ -1,7 +1,18 @@
 #include "GeneratingRandomNumbers/AcceptanceRejection.h"
 #include "GeneratingRandomNumbers/AcceptanceRejection-impl.h"
 
+#include "GeneratingRandomNumbers/RandomGenerator.h"
+
 namespace mc {
+    AcceptanceRejection::AcceptanceRejection(const AcceptanceRejection & rhs)
+        : _impl(std::make_unique<Impl>(
+            rhs._impl->_c,
+            *rhs._impl->_uniformGenerator,
+            *rhs._impl->_samplingGenerator,
+            *rhs._impl->_f))
+    {
+    }
+
     AcceptanceRejection::AcceptanceRejection(
         double c, 
         const IUniformRandomNumberGenerator & uniformGenerator,
@@ -39,6 +50,17 @@ namespace mc {
             *this->_impl->_uniformGenerator,
             *this->_impl->_samplingGenerator,
             *this->_impl->_f);
+    }
+
+    RandomGenerator makeAcceptanceRejection(
+        double c,
+        const IUniformRandomNumberGenerator & uniformGenerator,
+        const IGeneralSampling & samplingGenerator,
+        const ICumulativeDistributionFunction & f)
+    {
+        AcceptanceRejection inner(c, uniformGenerator, samplingGenerator, f);
+        RandomGenerator ret(inner);
+        return ret;
     }
 }
 

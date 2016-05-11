@@ -2,12 +2,17 @@
 
 #include <memory>
 
+#include "GeneratingRandomNumbers/Macro.h"
 #include "GeneratingRandomNumbers/IInverseOfCdf.h"
 
 namespace mc {
-    class InverseOfExponentialDistributionCdf : public IInverseOfCdf {
+    class InverseOfExponentialDistributionCdf
+        : public IInverseOfCdf {
     public:
+        InverseOfExponentialDistributionCdf(
+            const InverseOfExponentialDistributionCdf& rhs);
         InverseOfExponentialDistributionCdf(double mean);
+        ~InverseOfExponentialDistributionCdf();
 
     private:
         // Inherited via IInverseOfCdf
@@ -20,4 +25,11 @@ namespace mc {
         struct Impl;
         std::unique_ptr<Impl> _impl;
     };
+
+    RNDGEN_API std::shared_ptr<const IInverseOfCdf>
+    makeSharedInverseOfExponentialDistributionCdf(double mean);
+
+    RNDGEN_API std::unique_ptr<const IInverseOfCdf>
+    makeUniqueInverseOfExponentialDistributionCdf(double mean);
+
 }

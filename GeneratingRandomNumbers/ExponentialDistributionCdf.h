@@ -7,7 +7,7 @@
 namespace mc {
     class ExponentialDistributionCdf : public ICumulativeDistributionFunction {
     public:
-        ExponentialDistributionCdf(double mean)
+        explicit ExponentialDistributionCdf(double mean)
             : _mean(mean)
         {}
 
