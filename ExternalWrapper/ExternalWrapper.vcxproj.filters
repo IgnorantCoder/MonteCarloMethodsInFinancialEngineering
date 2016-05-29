@@ -30,6 +30,12 @@
     <ClInclude Include="boost\BoostNapier.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="boost\CholeskyFactorize.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ICholeskyFactorizeResult.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pi.cpp">
@@ -42,6 +48,12 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="boost\BoostNapier.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="boost\CholeskyFactorize.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ICholeskyFactorizeResult.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,3 +2,9 @@ Win32/*
 x64/*
 */Win32/
 */x64/
+*.opensdf
+*.suo
+*.sdf
+*.db
+*.opendb
+*.user
