@@ -1,9 +1,11 @@
 #include <cmath>
 #include <iostream>
+#include <fstream>
 #include <random>
 
 #include <boost/numeric/ublas/symmetric.hpp>
 #include <boost/numeric/ublas/triangular.hpp>
+#include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/io.hpp>
 
 #include "ExternalWrapper/boost/BoostPi.h"
@@ -18,6 +20,9 @@
 #include "GeneratingRandomNumbers/RandomGenerator.h"
 #include "GeneratingRandomNumbers/AcceptanceRejectionNormalRandomGenerator.h"
 #include "GeneratingRandomNumbers/InverseTransformExponentialRandomGenerator.h"
+#include "GeneratingRandomNumbers/CorrelationNormalGenerator.h"
+
+#include "GeneratingSamplePaths/BrownianBridgeBuilder.h"
 
 #include "Utility/Histogram.h"
 
@@ -29,6 +34,10 @@ void StdNormalDistributionTest();
 
 void ColeskyFactorizeTest();
 
+void CorrelationNormalGeneratorTest();
+void BrawnianBridgeBuilderTest();
+
+
 int main()
 {
     //UniformDistributionTest();
@@ -36,7 +45,9 @@ int main()
     //StdExponentialDistributionTest();
     //NormalDistributionTest();
     //StdNormalDistributionTest();
-    ColeskyFactorizeTest();
+    //ColeskyFactorizeTest();
+    //CorrelationNormalGeneratorTest();
+    BrawnianBridgeBuilderTest();
 
     return 0;
 }
@@ -106,12 +117,56 @@ void ColeskyFactorizeTest()
     mat(0, 0) =  4; //mat(0, 1) = -1;   mat(0, 2) =  1;
     mat(1, 0) = -1;   mat(1, 1) =  4; //mat(1, 2) = -1;
     mat(2, 0) =  1;   mat(2, 1) = -1;   mat(2, 2) =  4;
+    
     std::cout << mat << std::endl;
-    auto&& result = external::choleskyFactorization(mat);
+    const auto& result = external::choleskyFactorization(mat);
 
     std::cout << result->getLowerTriangularMatrix() << std::endl;
+    std::cout << result->getUpperTriangularMatrix() << std::endl;
     std::cout <<
         boost::numeric::ublas::prod(
             result->getLowerTriangularMatrix(),
             result->getUpperTriangularMatrix()) << std::endl;
 }
+
+void CorrelationNormalGeneratorTest()
+{
+    constexpr std::size_t N = 2;
+
+    boost::numeric::ublas::vector<double> mu(N);
+    mu(0) = 1.5;
+    mu(1) = 2.5;
+
+    boost::numeric::ublas::matrix<double> sigma(N, N);
+    sigma(0, 0) = 0.81;   sigma(1, 0) = -0.576;
+    sigma(0, 1) = -0.576;   sigma(1, 1) = 0.64;
+
+    const auto& gen
+        = mc::CorrelationNormalGenerator<N>::makeUnique(mu, sigma);
+    std::ofstream ofs("c:/temp/rnd.data");
+    for (std::size_t i = 0; i < 10000; ++i) {
+        const std::array<double, N>& nums = (*gen)();
+        ofs
+            << nums[0] << ", "
+            << nums[1] << std::endl;
+    }
+    ofs.close();
+}
+
+void BrawnianBridgeBuilderTest()
+{
+    mc::BrownianBridgeBuilder builder(
+        std::make_pair(0.0, 4.0),
+        std::make_pair(10.0, 4.0),
+        std::normal_distribution<double>(),
+        std::mt19937(1));
+    builder.iterate(5);
+    for (std::size_t i = 0; i < builder.size(); ++i) {
+        std::cout
+            << builder.getTimeGrid()[i]
+            << ","
+            << builder.getValues()[i]
+            << std::endl;
+    }
+}
+

@@ -84,6 +84,7 @@
       <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SAMPLEPATHS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -100,6 +101,7 @@
       <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SAMPLEPATHS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -118,6 +120,7 @@
       <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SAMPLEPATHS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -138,6 +141,7 @@
       <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SAMPLEPATHS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -149,12 +153,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BrownianBridgeBuilder.h" />
     <ClInclude Include="EulerApproximation.h" />
     <ClInclude Include="IDiffusionCoefficient.h" />
     <ClInclude Include="IDriftCoefficient.h" />
     <ClInclude Include="Macro.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BrownianBridgeBuilder.cpp" />
     <ClCompile Include="EulerApproximation.cpp" />
     <ClCompile Include="IDiffusionCoefficient.cpp" />
     <ClCompile Include="IDriftCoefficient.cpp" />

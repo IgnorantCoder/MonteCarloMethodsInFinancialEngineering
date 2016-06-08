@@ -71,10 +71,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IncludePath>D:\externallib\boost\include\boost-1_61;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IntDir>$(Platform)\$(Configuration)\</IntDir>
     <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IncludePath>D:\externallib\boost\include\boost-1_61;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>D:\externallib\boost\include\boost-1_61;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>D:\externallib\boost\include\boost-1_61;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -171,6 +179,7 @@
     <ClInclude Include="IGeneralSampling.h" />
     <ClInclude Include="IInverseOfCdf.h" />
     <ClInclude Include="impl\RandomGeneratorHolder.h" />
+    <ClInclude Include="IMultiDimensionalNormalGenerator.h" />
     <ClInclude Include="IMultiDimensionalUniformGenerator.h" />
     <ClInclude Include="INormalRandomGenerator.h" />
     <ClInclude Include="InverseOfExponentialDistributionCdf-impl.h" />
@@ -183,6 +192,7 @@
     <ClInclude Include="Macro.h" />
     <ClInclude Include="modified_linear_congruential_generator-impl.h" />
     <ClInclude Include="modified_linear_congruential_generator.h" />
+    <ClInclude Include="CorrelationNormalGenerator.h" />
     <ClInclude Include="MultiDimensionalUniformGenerator.h" />
     <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="simple_linear_congruential_generator.h" />

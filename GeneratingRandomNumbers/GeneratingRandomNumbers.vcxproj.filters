@@ -99,6 +99,12 @@
     <ClInclude Include="InverseTransformExponentialRandomGenerator-impl.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="IMultiDimensionalNormalGenerator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CorrelationNormalGenerator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ILinearCongruentialGenerator.cpp">
