@@ -1,12 +1,6 @@
 #include "GeneratingSamplePaths/IDriftCoefficient.h"
 
-namespace mc {
-    IDriftCoefficient::~IDriftCoefficient()
-    {
-    }
-
-    double IDriftCoefficient::operator()(double t) const
-    {
-        return this->callImpl(t);
-    }
-}
+#ifndef INLINE_EXPANTION
+#define INLINE
+#include "GeneratingSamplePaths/IDriftCoefficient.ipp"
+#endif

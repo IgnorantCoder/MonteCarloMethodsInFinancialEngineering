@@ -118,7 +118,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SAMPLEPATHS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SAMPLEPATHS_EXPORTS;INLINE_EXPANTION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
@@ -139,7 +139,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>../</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>SAMPLEPATHS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SAMPLEPATHS_EXPORTS;INLINE_EXPANTION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
@@ -153,17 +153,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="BrownianBridgeBuilder.h" />
     <ClInclude Include="EulerApproximation.h" />
+    <ClInclude Include="fwd.h" />
     <ClInclude Include="IDiffusionCoefficient.h" />
     <ClInclude Include="IDriftCoefficient.h" />
     <ClInclude Include="Macro.h" />
+    <ClInclude Include="BrownianMotion.h" />
+    <ClInclude Include="IStochasticProcess.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BrownianBridgeBuilder.cpp" />
     <ClCompile Include="EulerApproximation.cpp" />
     <ClCompile Include="IDiffusionCoefficient.cpp" />
     <ClCompile Include="IDriftCoefficient.cpp" />
+    <ClCompile Include="BrownianMotion.cpp" />
+    <ClCompile Include="IStochasticProcess.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BrownianMotion.ipp" />
+    <None Include="EulerApproximation.ipp" />
+    <None Include="IDiffusionCoefficient.ipp" />
+    <None Include="IDriftCoefficient.ipp" />
+    <None Include="IStochasticProcess.ipp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -162,3 +162,8 @@ namespace mc {
         return std::move(sigma);
     }
 }
+
+#ifndef INLINE_EXPANTION
+#define INLINE
+#include "GeneratingSamplePaths/EulerApproximation.ipp"
+#endif

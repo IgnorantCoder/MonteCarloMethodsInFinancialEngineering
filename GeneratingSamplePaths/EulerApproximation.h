@@ -3,11 +3,15 @@
 #include <memory>
 #include <vector>
 
-namespace mc {
-    class IDriftCoefficient;
-    class IDiffusionCoefficient;
+#include "GeneratingSamplePaths/fwd.h"
 
+namespace mc {
     class EulerApproximation {
+    public:
+        EulerApproximation(
+            const IDriftCoefficient& drift,
+            const IDiffusionCoefficient& diffusion);
+
     public:
         std::vector<double> generatedBy(
             const std::vector<double>& timeGrid) const;
@@ -27,3 +31,8 @@ namespace mc {
         std::shared_ptr<const IDiffusionCoefficient> _diffusion;
     };
 }
+
+#ifdef INLINE_EXPANTION
+#define INLINE inline
+#include "GeneratingSamplePaths/EulerApproximation.ipp"
+#endif

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <random>
+#include <numeric>
 
 #include <boost/numeric/ublas/symmetric.hpp>
 #include <boost/numeric/ublas/triangular.hpp>
@@ -22,7 +23,7 @@
 #include "GeneratingRandomNumbers/InverseTransformExponentialRandomGenerator.h"
 #include "GeneratingRandomNumbers/CorrelationNormalGenerator.h"
 
-#include "GeneratingSamplePaths/BrownianBridgeBuilder.h"
+#include "GeneratingSamplePaths/BrownianMotion.h"
 
 #include "Utility/Histogram.h"
 
@@ -36,6 +37,7 @@ void ColeskyFactorizeTest();
 
 void CorrelationNormalGeneratorTest();
 void BrawnianBridgeBuilderTest();
+void BrownianMotionTest();
 
 
 int main()
@@ -47,7 +49,7 @@ int main()
     //StdNormalDistributionTest();
     //ColeskyFactorizeTest();
     //CorrelationNormalGeneratorTest();
-    BrawnianBridgeBuilderTest();
+    BrownianMotionTest();
 
     return 0;
 }
@@ -155,18 +157,39 @@ void CorrelationNormalGeneratorTest()
 
 void BrawnianBridgeBuilderTest()
 {
-    mc::BrownianBridgeBuilder builder(
-        std::make_pair(0.0, 4.0),
-        std::make_pair(10.0, 4.0),
-        std::normal_distribution<double>(),
-        std::mt19937(1));
-    builder.iterate(5);
-    for (std::size_t i = 0; i < builder.size(); ++i) {
-        std::cout
-            << builder.getTimeGrid()[i]
-            << ","
-            << builder.getValues()[i]
-            << std::endl;
+    //mc::BrownianBridgeBuilder builder(
+    //    std::make_pair(0.0, 4.0),
+    //    std::make_pair(10.0, 4.0),
+    //    std::normal_distribution<double>(),
+    //    std::mt19937(1));
+    //builder.iterate(5);
+    //for (std::size_t i = 0; i < builder.size(); ++i) {
+    //    std::cout
+    //        << builder.getTimeGrid()[i]
+    //        << ","
+    //        << builder.getValues()[i]
+    //        << std::endl;
+    //}
+}
+
+void BrownianMotionTest()
+{
+    std::vector<double> timeGrid(12 * 40);
+    std::iota(timeGrid.begin(), timeGrid.end(), 0.0);
+
+    const std::size_t simnum = 100;
+    std::vector<std::shared_ptr<const mc::IStochasticProcess>> bms;
+    for (std::size_t i = 0; i < simnum; ++i) {
+        std::shared_ptr<const mc::IStochasticProcess> brownianMotion
+            = mc::BrownianMotion::buildByBrownianBridge(timeGrid, 10.0, 8.0);
+        bms.push_back(brownianMotion);
+    }
+    for (std::size_t i = 0; i < timeGrid.size(); ++i) {
+        std::cout << timeGrid[i] << ":";
+        for (std::size_t j = 0; j < simnum; ++j) {
+            std::cout << bms[j]->getValues()[i] << ",";
+        }
+        std::cout << std::endl;
     }
 }
 
